@@ -4,31 +4,698 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido a Nos Fuimos de Finca - Tu mejor opción para descansar</title>
-    <link rel="stylesheet" href="/7.0 HTML+CSS/4.0 big_projects/4.0.1 Nos_Fuimos_de_Finca/css/styles.css">
-         <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+<!-- Main stylesheet (base styles and utilities) -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+<!-- Component-specific stylesheets -->
+    <link rel="stylesheet" href="css/INDEX/1.navbar.css">
+    <link rel="stylesheet" href="css/INDEX/hero.css">
+    <link rel="stylesheet" href="css/INDEX/search-bar.css">
+    <link rel="stylesheet" href="css/INDEX/information-about.css">
+    <link rel="stylesheet" href="css/INDEX/finca-exposition.css">
+    <link rel="stylesheet" href="css/INDEX/slider-municipios.css">
+    <link rel="stylesheet" href="css/INDEX/fincas.css">
+    <link rel="stylesheet" href="css/INDEX/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href= "styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="js/responsive-utils.js" defer></script>
+    <script src="js/script.js" defer></script>
+    
+    <!-- Script para el cambio de color de navbar al hacer scroll -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('.header');
+            const heroHeight = window.innerHeight * 0.3; // Cambia cuando baje 30% del viewport
+            
+            function updateNavbar() {
+                if (window.scrollY > heroHeight) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+            
+            // Escuchar el evento scroll
+            window.addEventListener('scroll', updateNavbar);
+            
+            // Ejecutar una vez al cargar la página
+            updateNavbar();
+        });
+    </script>
 </head>
+
+<!--nav_bar_menu-->
 <body>
     <header class ="header">
-       <div class ="social-network-links">
-            <ul class ="social-media-icons">
-                <li>
-                    <a href =""
+        <div class="nav-center">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Rentar">Rentar</a>
+                </li>
             </ul>
-       </div> 
-       
-       <div class="nav-links">
-            <ul class="list-top-header">
-                <li> <a href="Home"></a>Home</li>
-                <li> <a href="Rentar"></a>Rentar</li>
-            </ul>
-        <div class="logo">
-            <img src="/4.0.1 Nos_Fuimos_de_Finca/images/nosfuimosdefincacom-logo-1546470263.jpg" alt = "Nos Fuimos de Finca Image">
+            <div class="logo">
+                <img src="/20.29 big_projects/4.0.1 Nos_Fuimos_de_Finca/images/nosfuimosdefincacom-logo-1546470263.jpg" alt = "Nos Fuimos de Finca Image">
+            </div> 
+        </div>
+        <div class= "header-controls">
+
+
+<!-- Language Selector -->
+            <div class="language-selector">
+                <button aria-expanded="false" aria-controls="language-menu" id="languageBtn">
+                    <i class="fa-solid fa-language"></i>
+                    <span id="currentLang">ES</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-menu" id="languageMenu">
+                    <div class="dropdown-item" data-lang="es">
+                        <img src="https://flagcdn.com/w20/es.png" alt="Español" class="flag-icon">
+                        <span>Español</span>
+                    </div>
+                    <div class="dropdown-item" data-lang="en">
+                        <img src="https://flagcdn.com/w20/us.png" alt="English" class="flag-icon">
+                        <span>English</span>
+                    </div>
+                </div>
+            </div>
+            
+
+<!-- User Menu -->
+            <div class="user-menu">
+                <button aria-expanded="false" aria-controls="user-menu" id="userMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="dropdown-menu" id="userMenuDropdown">
+                    <a href="log_in.html" class="dropdown-item" data-action="login">
+                        <i class="fa-solid fa-sign-in-alt"></i>
+                        <span>Iniciar Sesión</span>
+                    </a>
+                    <a href="register.html" class="dropdown-item" data-action="register">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span>Registrarse</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item" data-action="help">
+                        <i class="fa-solid fa-question-circle"></i>
+                        <span>Ayuda</span>
+                    </div>
+                    <div class="dropdown-item" data-action="contact">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Contacto</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
+
+<!--Hero-->
+    <!--This is the text in the left-->    
+    <main class = "hero">
+        <!-- Promotional Banner - Booking.com style -->
+        <section class = "section banner-section">
+            <div class = "banner-inner">
+                <h1 class ="title large">Nos Fuimos de Finca</h1>
+                <p class = "text-description">Las mejores fincas para tu descanso y el de tu familia.
+Escapa del ruido, respira aire puro y disfruta de la tranquilidad del campo con Nos Fuimos de Finca</p>
+                <button type = "button" class="btn btn-primary">
+                    <span>Descubre nuestro catálogo</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                </div>    
+
+
+        </section>
+        
+        <!--links in the right-->
+        <div class="banner-link">
+            <a href="https://www.facebook.com/share/15R1AQe8ny8/?mibextid=wwXIfr" title="Facebook" aria-label="Síguenos en Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/fincasantioquiaalquiler?igsh=dWlqMmNraDM4ZXE1&utm_source=qr" title="Instagram" aria-label="Síguenos en Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="http://wa.me/573014827005" title="WhatsApp" aria-label="Contáctanos por WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+
+        <!-- Search bar integrada al hero -->
+        <section class="hero-search-section">
+            <div class="search-box">
+                <!-- Location Input -->
+                <div class="search-field location-field">
+                    <div class="search-field-header">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span class="field-label">¿Dónde?</span>
+                    </div>
+                    <input type="text" placeholder="¿En qué lugar te gustaría la finca?" class="location">
+                    <div class="dropdown" id="dropdown">
+                        <div class="option"><span>Copacabana</span></div>
+                        <div class="option"><span>Girardota</span></div>
+                        <div class="option"><span>Barbosa</span></div>
+                        <div class="option"><span>Santa Fe de Antioquia</span></div>
+                        <div class="option"><span>Sopetrán</span></div>
+                        <div class="option"><span>San Jerónimo</span></div>
+                    </div>
+                </div>
+
+                <!-- Check-in Date -->
+                <div class="search-field date-field checkin-field">
+                    <div class="search-field-header">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span class="field-label">Llegada</span>
+                    </div>
+                    <div class="date-display" id="checkinDisplay">Agregar fecha</div>
+                    <input type="date" id="checkinDate" class="date-input" style="display: none;">
+                    
+                    <!-- Calendar Dropdown -->
+                    <div class="calendar-dropdown" id="checkinCalendar">
+                        <div class="calendar-header">
+                            <button type="button" class="calendar-nav prev" id="checkinPrev">&lt;</button>
+                            <h3 class="calendar-month" id="checkinMonth"></h3>
+                            <button type="button" class="calendar-nav next" id="checkinNext">&gt;</button>
+                        </div>
+                        <div class="calendar-grid">
+                            <div class="calendar-day-header">Dom</div>
+                            <div class="calendar-day-header">Lun</div>
+                            <div class="calendar-day-header">Mar</div>
+                            <div class="calendar-day-header">Mié</div>
+                            <div class="calendar-day-header">Jue</div>
+                            <div class="calendar-day-header">Vie</div>
+                            <div class="calendar-day-header">Sáb</div>
+                            <div class="calendar-days" id="checkinDays"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Check-out Date -->
+                <div class="search-field date-field checkout-field">
+                    <div class="search-field-header">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span class="field-label">Salida</span>
+                    </div>
+                    <div class="date-display" id="checkoutDisplay">Agregar fecha</div>
+                    <input type="date" id="checkoutDate" class="date-input" style="display: none;">
+                    
+                    <!-- Calendar Dropdown -->
+                    <div class="calendar-dropdown" id="checkoutCalendar">
+                        <div class="calendar-header">
+                            <button type="button" class="calendar-nav prev" id="checkoutPrev">&lt;</button>
+                            <h3 class="calendar-month" id="checkoutMonth"></h3>
+                            <button type="button" class="calendar-nav next" id="checkoutNext">&gt;</button>
+                        </div>
+                        <div class="calendar-grid">
+                            <div class="calendar-day-header">Dom</div>
+                            <div class="calendar-day-header">Lun</div>
+                            <div class="calendar-day-header">Mar</div>
+                            <div class="calendar-day-header">Mié</div>
+                            <div class="calendar-day-header">Jue</div>
+                            <div class="calendar-day-header">Vie</div>
+                            <div class="calendar-day-header">Sáb</div>
+                            <div class="calendar-days" id="checkoutDays"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guests Selector -->
+                <div class="search-field guest-field">
+                    <div class="search-field-header">
+                        <i class="fa-solid fa-users"></i>
+                        <span class="field-label">Huéspedes</span>
+                    </div>
+                    <button id="guestBtn" class="guest-btn">2 adultos · 0 niños</button>
+                    
+                    <!-- Guest Dropdown -->
+                    <div class="guest-dropdown" id="guestDropdown">
+                        <div class="guest-option">
+                            <div class="guest-info">
+                                <span class="guest-type">Adultos</span>
+                                <span class="guest-description">13 años o más</span>
+                            </div>
+                            <div class="counter">
+                                <button class="counter-btn minus" data-type="adults">−</button>
+                                <span class="value" id="adults">2</span>
+                                <button class="counter-btn plus" data-type="adults">+</button>
+                            </div>
+                        </div>
+
+                        <div class="guest-option">
+                            <div class="guest-info">
+                                <span class="guest-type">Niños</span>
+                                <span class="guest-description">De 2 a 12 años</span>
+                            </div>
+                            <div class="counter">
+                                <button class="counter-btn minus" data-type="children">−</button>
+                                <span class="value" id="children">0</span>
+                                <button class="counter-btn plus" data-type="children">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="pets-option">
+                            <div class="pets-toggle">
+                                <span class="pets-label">¿Estoy viajando con animales?</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="travelWithPets">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search Button -->
+                <button type="button" class="search-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>Buscar</span>
+                </button>
+            </div>
+        </section>
+    </main>
+<!--information about-->
+    <main class = "finca-exposition">
+        <div class = "banner-inner">
+            <h1 class="title-information">
+                ¡Explora la mejor selección de fincas para tus días de descanso!
+            </h1>
+            <p class="text-description2">
+            Las mejores fincas para tu descanso y el de tu familia.  
+            Escapa del ruido, respira aire puro y disfruta de la tranquilidad del campo con Nos Fuimos de Finca.
+            </p>
+            <p class="text-description3">
+            Encuentra alojamientos únicos con piscina, zonas verdes y vistas espectaculares.  
+            Ya sea un fin de semana romántico, unas vacaciones familiares o una escapada con amigos, tenemos el lugar perfecto para ti.
+            </p>
+        </div>
+        
+        <!-- Slider Container -->
+        <div class="information-slider-container">
+            <div class="slider-wrapper">
+                <div class="slider-track-info" id="sliderTrackInfo">
+                    <!-- Card 1 -->
+                    <div class="info-card">
+                        <div class="info-card-image">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=800&fit=crop&q=80" alt="Finca El Paraíso">
+                        </div>
+                        <div class="info-card-content">
+                            <h3 class="info-card-title">Finca El Paraíso</h3>
+                            <p class="info-card-description">
+                                Hermosa finca en Copacabana con capacidad para 20 personas. Cuenta con piscina climatizada, 
+                                zona BBQ, 5 habitaciones y amplias zonas verdes. Perfecta para reuniones familiares.
+                            </p>
+                            <div class="info-card-features">
+                                <span class="feature-tag"><i class="fa-solid fa-users"></i> 20 Personas</span>
+                                <span class="feature-tag"><i class="fa-solid fa-water-ladder"></i> Piscina</span>
+                                <span class="feature-tag"><i class="fa-solid fa-fire"></i> BBQ</span>
+                                <span class="feature-tag"><i class="fa-solid fa-bed"></i> 5 Habitaciones</span>
+                            </div>
+                            <button class="info-card-button">
+                                <span>Ver Detalles</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="info-card">
+                        <div class="info-card-image">
+                            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=800&fit=crop&q=80" alt="Finca Villa María">
+                        </div>
+                        <div class="info-card-content">
+                            <h3 class="info-card-title">Finca Villa María</h3>
+                            <p class="info-card-description">
+                                Ubicada en Girardota, ideal para 15 personas. Incluye jacuzzi, kiosco, cancha múltiple, 
+                                4 habitaciones y hermosas vistas a la montaña. Ambiente tranquilo y natural.
+                            </p>
+                            <div class="info-card-features">
+                                <span class="feature-tag"><i class="fa-solid fa-users"></i> 15 Personas</span>
+                                <span class="feature-tag"><i class="fa-solid fa-hot-tub"></i> Jacuzzi</span>
+                                <span class="feature-tag"><i class="fa-solid fa-futbol"></i> Cancha</span>
+                                <span class="feature-tag"><i class="fa-solid fa-mountain"></i> Vista</span>
+                            </div>
+                            <button class="info-card-button">
+                                <span>Ver Detalles</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="info-card">
+                        <div class="info-card-image">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=800&fit=crop&q=80" alt="Finca Los Pinos">
+                        </div>
+                        <div class="info-card-content">
+                            <h3 class="info-card-title">Finca Los Pinos</h3>
+                            <p class="info-card-description">
+                                En Santa Fe de Antioquia, capacidad para 25 personas. Piscina infinita, rancho con parrilla, 
+                                6 habitaciones, zona de juegos infantiles y río cercano. Clima cálido todo el año.
+                            </p>
+                            <div class="info-card-features">
+                                <span class="feature-tag"><i class="fa-solid fa-users"></i> 25 Personas</span>
+                                <span class="feature-tag"><i class="fa-solid fa-water"></i> Río Cercano</span>
+                                <span class="feature-tag"><i class="fa-solid fa-children"></i> Zona Juegos</span>
+                                <span class="feature-tag"><i class="fa-solid fa-temperature-high"></i> Clima Cálido</span>
+                            </div>
+                            <button class="info-card-button">
+                                <span>Ver Detalles</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="info-card">
+                        <div class="info-card-image">
+                            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&h=800&fit=crop&q=80" alt="Finca La Cabaña">
+                        </div>
+                        <div class="info-card-content">
+                            <h3 class="info-card-title">Finca La Cabaña</h3>
+                            <p class="info-card-description">
+                                En Barbosa, para 12 personas. Estilo rústico con chimenea, piscina temperada, 
+                                3 habitaciones, sala de juegos con billar y ping pong. Perfecta para escapadas de fin de semana.
+                            </p>
+                            <div class="info-card-features">
+                                <span class="feature-tag"><i class="fa-solid fa-users"></i> 12 Personas</span>
+                                <span class="feature-tag"><i class="fa-solid fa-fire"></i> Chimenea</span>
+                                <span class="feature-tag"><i class="fa-solid fa-gamepad"></i> Sala Juegos</span>
+                                <span class="feature-tag"><i class="fa-solid fa-table-tennis-paddle-ball"></i> Ping Pong</span>
+                            </div>
+                            <button class="info-card-button">
+                                <span>Ver Detalles</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 5 -->
+                    <div class="info-card">
+                        <div class="info-card-image">
+                            <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&h=800&fit=crop&q=80" alt="Finca El Refugio">
+                        </div>
+                        <div class="info-card-content">
+                            <h3 class="info-card-title">Finca El Refugio</h3>
+                            <p class="info-card-description">
+                                En Sopetrán, capacidad para 18 personas. Con piscina grande, turco, sauna, 
+                                4 habitaciones, zona de camping y senderos ecológicos. Conexión total con la naturaleza.
+                            </p>
+                            <div class="info-card-features">
+                                <span class="feature-tag"><i class="fa-solid fa-users"></i> 18 Personas</span>
+                                <span class="feature-tag"><i class="fa-solid fa-spa"></i> Turco & Sauna</span>
+                                <span class="feature-tag"><i class="fa-solid fa-campground"></i> Camping</span>
+                                <span class="feature-tag"><i class="fa-solid fa-tree"></i> Senderos</span>
+                            </div>
+                            <button class="info-card-button">
+                                <span>Ver Detalles</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones de Navegación -->
+            <div class="slider-nav-buttons">
+                <button class="slider-nav-btn" id="prevInfoBtn" aria-label="Anterior">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="slider-nav-btn" id="nextInfoBtn" aria-label="Siguiente">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Indicadores -->
+            <div class="slider-indicators" id="sliderIndicators"></div>
+        </div>
+    </main>
+
+    <!--Slider Municipios - Estilo Moderno con Miniaturas-->
+  <section id="slider-municipios">
+    <div class="municipios-container">
+      <div class="slide">
+        <!-- Copacabana -->
+        <div class="item" style="background-image: url('images/Copacabana.jpg')">
+          <div class="content">
+            <div class="name">Copacabana</div>
+            <div class="des">
+              Lugar rodeado de montañas, ideal para descansar y disfrutar de la naturaleza.
+            </div>
+            <button class="seeMore">Ver Fincas</button>
+          </div>
+        </div>
+
+        <!-- Barbosa -->
+        <div class="item" style="background-image: url('images/Barbosa.jpg')">
+          <div class="content">
+            <div class="name">Barbosa</div>
+            <div class="des">
+              Puerta de entrada al norte del Valle de Aburrá, con hermosos paisajes naturales.
+            </div>
+            <button class="seeMore">Ver Fincas</button>
+          </div>
+        </div>
+
+        <!-- Girardota -->
+        <div class="item" style="background-image: url('images/Girardota.jpg')">
+          <div class="content">
+            <div class="name">Girardota</div>
+            <div class="des">
+              Conocido por sus montañas y ambiente tranquilo, perfecto para el descanso.
+            </div>
+            <button class="seeMore">Ver Fincas</button>
+          </div>
+        </div>
+
+        <!-- San Jerónimo -->
+        <div class="item" style="background-image: url('images/Sanjeronimo.jpg')">
+          <div class="content">
+            <div class="name">San Jerónimo</div>
+            <div class="des">
+              Popular por sus fincas turísticas y clima cálido ideal para el fin de semana.
+            </div>
+            <button class="seeMore">Ver Fincas</button>
+          </div>
+        </div>
+
+        <!-- Santa Fe de Antioquia -->
+        <div class="item" style="background-image: url('images/Santafedeantioquia.jpg')">
+          <div class="content">
+            <div class="name">Santa Fe de Antioquia</div>
+            <div class="des">
+              Ciudad colonial con arquitectura e historia viva, declarada monumento nacional.
+            </div>
+            <button class="seeMore">Ver Fincas</button>
+          </div>
+        </div>
+
+        <!-- Sopetrán -->
+        <div class="item" style="background-image: url('images/Sopetran.jpg')">
+          <div class="content">
+            <div class="name">Sopetrán</div>
+            <div class="des">
+              Famoso por sus mangos y ambiente campestre, ideal para escapadas rurales.
+            </div>
+            <button class="seeMore">Ver Fincas</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="button">
+        <button class="prev">◁</button>
+        <button class="next">▷</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fincas para este fin de semana -->
+  <section id="fincas-fin-semana">
+    <h2 class="fincas-titulo">Fincas para este fin de semana</h2>
+    
+    <div class="fincas-grid">
+      <!-- Finca 1 -->
+      <div class="finca-card">
+        <div class="finca-imagen" style="background-image: url('images/finca1.jpg')"></div>
+        <div class="finca-info">
+          <h3>Finca El Paraíso</h3>
+          <p class="finca-ubicacion">📍 Copacabana, Antioquia</p>
+          <p class="finca-descripcion">
+            Hermosa finca con piscina climatizada, zona BBQ y vista panorámica. Ideal para familias de hasta 12 personas.
+          </p>
+          <div class="finca-detalles">
+            <span>🏊 Piscina</span>
+            <span>🍖 BBQ</span>
+            <span>👥 12 personas</span>
+          </div>
+          <div class="finca-precio">
+            <span class="precio">$450.000</span>
+            <span class="periodo">/ noche</span>
+          </div>
+          <button class="btn-reservar">Reservar Ahora</button>
+        </div>
+      </div>
+
+      <!-- Finca 2 -->
+      <div class="finca-card">
+        <div class="finca-imagen" style="background-image: url('images/finca2.jpg')"></div>
+        <div class="finca-info">
+          <h3>Finca La Rivera</h3>
+          <p class="finca-ubicacion">📍 San Jerónimo, Antioquia</p>
+          <p class="finca-descripcion">
+            Espacios amplios con jacuzzi y río privado. Perfecta para desconectarse del estrés y disfrutar la naturaleza.
+          </p>
+          <div class="finca-detalles">
+            <span>🛁 Jacuzzi</span>
+            <span>🌊 Río</span>
+            <span>👥 8 personas</span>
+          </div>
+          <div class="finca-precio">
+            <span class="precio">$380.000</span>
+            <span class="periodo">/ noche</span>
+          </div>
+          <button class="btn-reservar">Reservar Ahora</button>
+        </div>
+      </div>
+
+      <!-- Finca 3 -->
+      <div class="finca-card">
+        <div class="finca-imagen" style="background-image: url('images/finca3.jpg')"></div>
+        <div class="finca-info">
+          <h3>Finca Las Palmas</h3>
+          <p class="finca-ubicacion">📍 Santa Fe de Antioquia</p>
+          <p class="finca-descripcion">
+            Alojamiento rural con amplios jardines y zona de camping. Incluye cocina equipada, Wi-Fi y parqueadero.
+          </p>
+          <div class="finca-detalles">
+            <span>🏕️ Camping</span>
+            <span>📶 Wi-Fi</span>
+            <span>👥 10 personas</span>
+          </div>
+          <div class="finca-precio">
+            <span class="precio">$320.000</span>
+            <span class="periodo">/ noche</span>
+          </div>
+          <button class="btn-reservar">Reservar Ahora</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Footer -->
+  <footer id="footer">
+    <div class="footer-content">
+      <div class="footer-column" id="ayuda-section">
+        <h3>Soporte</h3>
+        <p>Estamos aquí para ayudarte en todo momento con tu experiencia de reserva.</p>
+        <ul>
+          <li><i class="fa-solid fa-phone"></i>+57 300 123 4567</li>
+          <li><i class="fa-solid fa-envelope"></i>soporte@nosfuimosdefinca.com</li>
+          <li><i class="fa-solid fa-comment-dots"></i>Chat en vivo 24/7</li>
+          <li><i class="fa-solid fa-circle-question"></i>Preguntas frecuentes</li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Acerca de</h3>
+        <p>Tu destino de confianza para las mejores fincas y experiencias en Colombia.</p>
+        <ul>
+          <li><i class="fa-solid fa-house-chimney"></i>Más de 500 fincas</li>
+          <li><i class="fa-solid fa-star"></i>Experiencias verificadas</li>
+          <li><i class="fa-solid fa-shield-halved"></i>Reservas seguras</li>
+          <li><i class="fa-solid fa-users"></i>Ideal para familias</li>
+        </ul>
+      </div>
+      
+      <div class="footer-column" id="contacto-section">
+        <h3>Contacto</h3>
+        <p>Conéctate con nosotros a través de tus canales favoritos.</p>
+        <ul>
+          <li><i class="fa-solid fa-location-dot"></i>Medellín, Colombia</li>
+          <li><i class="fa-solid fa-envelope"></i>contacto@nosfuimosdefinca.com</li>
+          <li><i class="fa-brands fa-whatsapp"></i>+57 300 123 4567</li>
+        </ul>
+        
+        <div class="footer-social">
+          <a href="https://www.facebook.com/share/15R1AQe8ny8/?mibextid=wwXIfr" title="Facebook" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com/fincasantioquiaalquiler?igsh=dWlqMmNraDM4ZXE1&utm_source=qr" title="Instagram" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="http://wa.me/573014827005" title="WhatsApp" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 <a href="#">Nos Fuimos de Finca</a>. Todos los derechos reservados. | Diseñado con <i class="fa-solid fa-heart" style="color: #6c5ce7;"></i> en Colombia</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JavaScript Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  
+  <!-- Slider Municipios Script - Inline para asegurar ejecución -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log("DOM Cargado - Iniciando slider municipios");
+      
+      const nextBtn = document.querySelector("#slider-municipios .button .next");
+      const prevBtn = document.querySelector("#slider-municipios .button .prev");
+      const slide = document.querySelector("#slider-municipios .slide");
+      
+      console.log("Next button:", nextBtn);
+      console.log("Prev button:", prevBtn);
+      console.log("Slide container:", slide);
+      
+      if (nextBtn && prevBtn && slide) {
+        // Botón siguiente
+        nextBtn.addEventListener("click", function() {
+          console.log("¡CLICK EN NEXT!");
+          const items = document.querySelectorAll("#slider-municipios .slide .item");
+          console.log("Items:", items.length);
+          if (items.length > 0) {
+            slide.appendChild(items[0]);
+            console.log("Item movido al final");
+          }
+        });
+        
+        // Botón anterior
+        prevBtn.addEventListener("click", function() {
+          console.log("¡CLICK EN PREV!");
+          const items = document.querySelectorAll("#slider-municipios .slide .item");
+          console.log("Items:", items.length);
+          if (items.length > 0) {
+            slide.prepend(items[items.length - 1]);
+            console.log("Item movido al inicio");
+          }
+        });
+        
+        // Auto-slide cada 10 segundos
+        setInterval(function() {
+          const items = document.querySelectorAll("#slider-municipios .slide .item");
+          if (items.length > 0) {
+            slide.appendChild(items[0]);
+            console.log("Auto-slide ejecutado");
+          }
+        }, 10000);
+        
+        console.log("✅ Slider municipios configurado correctamente");
+      } else {
+        console.error("❌ Error: No se encontraron los elementos del slider");
+      }
+    });
+  </script>
+  
+  <!-- Information About Slider Script -->
+  <script src="js/information-slider.js"></script>
+  
+  <!-- Ionicons scripts -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 </body>
 </html>

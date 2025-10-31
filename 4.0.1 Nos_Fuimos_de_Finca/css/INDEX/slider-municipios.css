@@ -1,0 +1,409 @@
+/* ========================================
+   SLIDER MUNICIPIOS - PANTALLA COMPLETA SIN FONDO
+   Slider limpio que ocupa toda la pantalla
+   ======================================== */
+
+#slider-municipios {
+  background: transparent;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 100vw; /* Evita overflow */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.municipios-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%; /* Evita overflow */
+  height: 100%;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  margin: 0;
+  overflow: hidden; /* Evita que el contenido se desborde */
+}
+
+.municipios-container .slide {
+  border-radius: 0;
+  height: 100%;
+  position: relative;
+}
+
+.municipios-container .slide .item {
+  width: 250px;
+  height: 350px;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  border-radius: 20px;
+  box-shadow: 0 30px 50px #505050;
+  background-position: 50% 50%;
+  background-size: cover;
+  display: inline-block;
+  transition: all 0.5s;
+}
+
+/* Los primeros dos items ocupan toda la pantalla */
+.slide .item:nth-child(1),
+.slide .item:nth-child(2) {
+  top: 0;
+  left: 0;
+  transform: translate(0, 0);
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s;
+  box-shadow: none;
+}
+
+/* Posicionamiento de miniaturas a la derecha */
+.slide .item:nth-child(3) {
+  left: 60%;
+}
+
+.slide .item:nth-child(4) {
+  left: calc(60% + 270px);
+}
+
+.slide .item:nth-child(5) {
+  left: calc(60% + 540px);
+}
+
+.slide .item:nth-child(n + 6) {
+  left: calc(60% + 810px);
+  opacity: 0;
+}
+
+/* Contenido de cada slide */
+.item .content {
+  position: absolute;
+  top: 50%;
+  left: 120px;
+  width: 500px;
+  text-align: left;
+  color: #eee;
+  transform: translate(0, -50%);
+  font-family: 'Montserrat', system-ui, sans-serif;
+  display: none;
+}
+
+/* Solo mostrar contenido en el segundo item (activo) */
+.slide .item:nth-child(2) .content {
+  display: block;
+}
+
+/* Nombre del municipio */
+.content .name {
+  font-size: 65px;
+  text-transform: uppercase;
+  font-weight: bold;
+  opacity: 0;
+  animation: animate 1s ease-in-out 1 forwards;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+/* Descripción */
+.content .des {
+  margin-top: 15px;
+  margin-bottom: 30px;
+  opacity: 0;
+  animation: animate 1s ease-in-out 0.3s 1 forwards;
+  font-size: 20px;
+  line-height: 1.7;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* Botón Ver Fincas */
+.content .seeMore {
+  padding: 15px 40px;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.673);
+  transition: all 0.5s;
+  animation: animate 1s ease-in-out 0.6s 1 forwards;
+  font-weight: 600;
+  font-size: 18px;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.content .seeMore:hover {
+  background-color: rgb(255, 255, 255);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Animación de entrada */
+@keyframes animate {
+  from {
+    opacity: 0;
+    transform: translate(0, 100px);
+    filter: blur(33px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0);
+    filter: blur(0);
+  }
+}
+
+/* Botones de navegación */
+.button {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.button button {
+  width: 55px;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  border: 2px solid #000000bd;
+  transition: 0.3s;
+  background: rgba(255, 255, 255, 0.678);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.button button:hover {
+  color: #000000;
+  border: 2px solid #ffffffbd;
+  transform: scale(1.15);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.button button:focus {
+  transform: scale(1.15);
+  background: #ffffff;
+  border: 2px solid #ffffffbd;
+}
+
+.button button:active {
+  transform: scale(1.05);
+}
+
+.next {
+  padding: 0 0 0 3px;
+}
+
+.prev {
+  padding: 0 3px 0 0;
+}
+
+/* ======================================== 
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 1600px) {
+  .municipios-container {
+    width: 92vw;
+    height: 85vh;
+  }
+
+  .content .name {
+    font-size: 55px;
+  }
+
+  .content .des {
+    font-size: 18px;
+  }
+
+  .municipios-container .slide .item {
+    width: 220px;
+    height: 320px;
+  }
+
+  .slide .item:nth-child(3) {
+    left: 58%;
+  }
+
+  .slide .item:nth-child(4) {
+    left: calc(58% + 240px);
+  }
+
+  .slide .item:nth-child(5) {
+    left: calc(58% + 480px);
+  }
+
+  .slide .item:nth-child(n + 6) {
+    left: calc(58% + 720px);
+  }
+}
+
+@media (max-width: 1200px) {
+  .municipios-container {
+    width: 90vw;
+    height: 80vh;
+  }
+
+  .content .name {
+    font-size: 45px;
+  }
+
+  .content .des {
+    font-size: 16px;
+  }
+
+  .item .content {
+    left: 80px;
+    width: 400px;
+  }
+
+  .municipios-container .slide .item {
+    width: 200px;
+    height: 280px;
+  }
+
+  .slide .item:nth-child(3) {
+    left: 55%;
+  }
+
+  .slide .item:nth-child(4) {
+    left: calc(55% + 220px);
+  }
+
+  .slide .item:nth-child(5) {
+    left: calc(55% + 440px);
+  }
+
+  .slide .item:nth-child(n + 6) {
+    left: calc(55% + 660px);
+  }
+}
+
+@media (max-width: 768px) {
+  #slider-municipios {
+    padding: 20px 0;
+  }
+
+  .municipios-container {
+    width: 95vw;
+    height: 70vh;
+  }
+
+  .municipios-container .slide .item {
+    width: 150px;
+    height: 220px;
+  }
+
+  .slide .item:nth-child(3) {
+    left: 50%;
+  }
+
+  .slide .item:nth-child(4) {
+    left: calc(50% + 170px);
+  }
+
+  .slide .item:nth-child(5) {
+    left: calc(50% + 340px);
+  }
+
+  .slide .item:nth-child(n + 6) {
+    left: calc(50% + 510px);
+  }
+
+  .item .content {
+    left: 40px;
+    width: 300px;
+  }
+
+  .content .name {
+    font-size: 35px;
+    margin-bottom: 12px;
+  }
+
+  .content .des {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .content .seeMore {
+    padding: 12px 25px;
+    font-size: 14px;
+  }
+
+  .button {
+    bottom: 30px;
+    gap: 20px;
+  }
+
+  .button button {
+    width: 45px;
+    height: 42px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .municipios-container {
+    width: 95vw;
+    height: 65vh;
+    border-radius: 15px;
+  }
+
+  .municipios-container .slide .item {
+    width: 120px;
+    height: 180px;
+  }
+
+  .slide .item:nth-child(3) {
+    left: 55%;
+  }
+
+  .slide .item:nth-child(4) {
+    left: calc(55% + 140px);
+  }
+
+  .slide .item:nth-child(5) {
+    left: calc(55% + 280px);
+  }
+
+  .item .content {
+    left: 25px;
+    width: 85%;
+    max-width: 280px;
+  }
+
+  .content .name {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .content .des {
+    font-size: 12px;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+
+  .content .seeMore {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+
+  .button {
+    bottom: 20px;
+    gap: 15px;
+  }
+
+  .button button {
+    width: 40px;
+    height: 38px;
+    font-size: 16px;
+  }
+}

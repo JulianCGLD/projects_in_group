@@ -1,0 +1,532 @@
+/* ========================================
+   HERO SECTION STYLES
+   Archivo CSS específico para la sección hero
+   Movido desde styles.css para mejor organización
+   ======================================== */
+
+/* CSS Custom Properties para HERO */
+:root {
+    --hero-height: 100vh;
+    --hero-height-mobile: calc(var(--vh, 1vh) * 100);
+}
+
+/* Hero Section Styles */
+.hero {
+    position: relative;
+    /* Larger hero to match reference image */
+    height: 100vh;
+    height: 100svh;
+    min-height: 750px;
+    margin-bottom: 80px; /* Reducir el margen para acercar más la search bar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: visible; /* Permitir que la search bar se salga */
+    z-index: 10; /* Z-index moderado para el hero */
+    /* Imagen de fondo única */
+    background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Hero Banner Wrapper - similar to Booking.com structure */
+.banner-section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+}
+
+/* Dark overlay for better text readability */
+.banner-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.4) 50%,
+        rgba(0, 0, 0, 0.2) 100%
+    );
+    z-index: 5;
+}
+
+.banner-inner {
+    position: relative;
+    z-index: 10;
+    text-align: left;
+    color: white;
+    padding: 2rem;
+    max-width: 650px;
+    margin-left: max(1rem, calc((100% - 1400px) / 2 + 1rem));
+    /* Align with search bar container (max-width: 1400px) at the red line position */
+    /* Removed background box and blur per request */
+}
+
+/* Hero Title - enhanced styling with Lobster font */
+.title.large {
+    font-size: 6.0rem;
+    font-weight: 400; /* Lobster solo tiene peso 400 */
+    margin-bottom: 2.5rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    font-family: "Lobster", cursive; /* Cambiamos a Lobster */
+    line-height: 1.1;
+    letter-spacing: -0.01em; /* Ajustamos el spacing para Lobster */
+}
+
+/* Hero Description */
+.text-description {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    opacity: 0.95;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+}
+
+/* Enhanced CTA Button - Booking.com style */
+.btn.btn-primary {
+    background: linear-gradient(135deg, #006ce4 0%, #0057b8 100%);
+    color: white;
+    border: none;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 16px rgba(0, 108, 228, 0.4);
+    font-family: "Inter", sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0, 108, 228, 0.6);
+    background: linear-gradient(135deg, #0057b8 0%, #004494 100%);
+}
+
+.btn.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 108, 228, 0.4);
+}
+
+/* ========================================
+   HERO SEARCH BAR STYLES
+   ======================================== */
+
+/* Search section integrada al hero */
+.hero-search-section {
+    position: absolute; /* Absolute dentro del hero */
+    bottom: -60px; /* Posicionar fuera del hero */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    z-index: 200; /* Z-index más alto que el hero */
+    pointer-events: auto; /* Asegurar que sea clickeable */
+}
+
+/* Alternativa: usar absolute con mejor cálculo */
+@media (min-width: 769px) {
+    .hero-search-section {
+        position: absolute;
+        top: auto;
+        bottom: -60px;
+        transform: translateX(-50%);
+    }
+}
+
+/* Ajustes específicos para la search box en el hero */
+.hero-search-section .search-box {
+    background: rgba(255, 255, 255, 1); /* Fondo completamente sólido */
+    backdrop-filter: blur(10px);
+    border-radius: 60px; /* Más redondeado como en la referencia */
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.2); /* Sombra más fuerte */
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 2px solid rgba(0, 0, 0, 0.05); /* Borde más visible */
+    justify-content: space-between; /* Mejor distribución */
+    position: relative;
+    z-index: 1; /* Z-index relativo dentro de la sección */
+}
+
+/* Estilos responsivos para la search bar en el hero */
+@media (max-width: 768px) {
+    .hero-search-section {
+        bottom: -40px; /* Ajustar para mobile */
+        width: 95%;
+    }
+    
+    .hero-search-section .search-box {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.5rem;
+        border-radius: 20px;
+    }
+    
+/* Carousel Styles - REMOVIDO */
+/* El carousel fue eliminado del HTML */keyframes slideShow {
+    0%, 22% { transform: translateX(0%); }
+    25%, 47% { transform: translateX(-100%); }
+    50%, 72% { transform: translateX(-200%); }
+    75%, 97% { transform: translateX(-300%); }
+    100% { transform: translateX(0%); }
+}
+
+/* Promotional Banner Overlay - Booking.com style */
+.hero-promo-banner {
+    position: absolute;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #ff6b35 0%, #ff8a00 100%);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 20;
+    box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+    font-family: "Inter", sans-serif;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.05); }
+}
+
+/* Enhanced Banner Links - Social Media */
+.banner-link {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    pointer-events: auto;
+}
+
+.banner-link a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.banner-link a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.banner-link a:hover::before {
+    transform: translateX(100%);
+}
+
+.banner-link a:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
+    color: #fff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific social media colors on hover */
+.banner-link a[href*="facebook"]:hover {
+    background: rgba(24, 119, 242, 0.9);
+}
+
+.banner-link a[href*="instagram"]:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.banner-link a[href*="whatsapp"]:hover {
+    background: rgba(37, 211, 102, 0.9);
+}
+
+/* ======================================== 
+   RESPONSIVE DESIGN FOR HERO SECTION
+   ======================================== */
+
+/* Extra Large Devices (Desktop - 1400px and up) */
+@media (min-width: 1400px) {
+    .title.large {
+        font-size: 5.5rem; /* Lobster se ve mejor un poco más pequeño */
+    }
+}
+
+/* Large Devices (Desktop - 1200px and up) */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .title.large {
+        font-size: 5rem;
+    }
+}
+
+/* Medium Devices (Tablets - 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .title.large {
+        font-size: 4.5rem;
+    }
+}
+
+/* Small Devices (Tablets - 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .title.large {
+        font-size: 4rem;
+    }
+}
+
+/* Mobile Devices (576px and up) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .title.large {
+        font-size: 3.5rem;
+        line-height: 1.2;
+    }
+    
+    .text-description {
+        font-size: 1.1rem;
+    }
+}
+
+/* Extra Small Devices (Mobile - up to 575px) */
+@media (max-width: 575px) {
+    .title.large {
+        font-size: 3rem;
+        line-height: 1.2;
+    }
+    
+    .text-description {
+        font-size: 1rem;
+    }
+    .hero {
+        height: 100svh;
+        padding: 1rem 0;
+    }
+    
+    .hero-content {
+        padding: 0 1rem;
+        text-align: center;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Landscape Mobile Devices */
+@media (max-width: 767px) and (orientation: landscape) and (max-height: 500px) {
+    .hero {
+        height: 100vh;
+        min-height: 400px;
+    }
+    
+    .hero-content {
+        justify-content: flex-start;
+        padding-top: 2rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.6rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Responsive Design for Hero */
+@media (max-width: 768px) {
+    .hero {
+        height: 100vh;
+        height: 100svh;
+        min-height: 650px;
+    }
+    
+    .banner-section {
+        padding: 0 2rem;
+    }
+    
+    .title.large {
+        font-size: 2.8rem;
+        line-height: 1.1;
+    }
+    
+    .text-description {
+        font-size: 1.15rem;
+        margin-bottom: 2rem;
+    }
+    
+    .banner-inner {
+        padding: 2rem 1.5rem;
+        max-width: 100%;
+        border-radius: 0.75rem;
+    }
+    
+    .btn.btn-primary {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .hero-promo-banner {
+        top: 1rem;
+        font-size: 0.8rem;
+        padding: 0.4rem 1.2rem;
+    }
+    
+    .banner-link {
+        right: 1.5rem;
+        gap: 0.75rem;
+    }
+    
+    .banner-link a {
+        width: 46px;
+        height: 46px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        height: 100vh;
+        height: 100svh;
+        min-height: 550px;
+    }
+    
+    .banner-section {
+        padding: 0;
+    }
+    
+    .banner-section::before {
+        background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.7) 0%,
+            rgba(0, 0, 0, 0.5) 50%,
+            rgba(0, 0, 0, 0.3) 100%
+        );
+    }
+    
+    .title.large {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .text-description {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+    }
+    
+    .btn.btn-primary {
+        padding: 0.9rem 1.8rem;
+        font-size: 0.95rem;
+        border-radius: 0.4rem;
+    }
+    
+    .banner-inner {
+        padding: 1.5rem 1rem;
+        margin-left: 1rem;
+        border-radius: 0.5rem;
+        /* Removed background box on mobile as well */
+    }
+    
+    .hero-promo-banner {
+        display: none; /* Hide promo banner on very small screens */
+    }
+    
+    .banner-link {
+        right: 1rem;
+        gap: 0.5rem;
+    }
+    
+    .banner-link a {
+        width: 42px;
+        height: 42px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    .hero-promo-banner,
+    .banner-inner,
+    .carousel {
+        animation: none;
+    }
+    
+    .slides {
+        animation: none;
+    }
+    
+    .btn.btn-primary:hover {
+        transform: none;
+    }
+    
+    .banner-link a:hover {
+        transform: scale(1.05);
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .hero {
+        background: linear-gradient(135deg, #000080 0%, #000040 100%);
+    }
+    
+    .banner-link a {
+        border: 2px solid white;
+    }
+}
+
+/* Dark mode considerations */
+@media (prefers-color-scheme: dark) {
+    .hero-promo-banner {
+        background: linear-gradient(90deg, #cc5429 0%, #d4841a 100%);
+    }
+}

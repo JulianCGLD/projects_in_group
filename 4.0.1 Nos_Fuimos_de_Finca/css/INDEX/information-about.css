@@ -1,0 +1,394 @@
+/* ========================================
+   INFORMATION ABOUT SECTION STYLES
+   Slider rotativo de cajitas con información
+   ======================================== */
+
+/* Information About Section */
+.finca-exposition {
+    position: relative;
+    z-index: -1;
+    padding: 8rem 0 6rem 0; /* Sin padding lateral */
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    overflow: hidden;
+}
+
+/* Contenedor del slider */
+.information-slider-container {
+    position: relative;
+    max-width: 100%; /* 100% del ancho */
+    width: 100%;
+    margin: 0;
+    padding: 2rem 0;
+}
+
+/* Título de la sección */
+.finca-exposition .banner-inner {
+    max-width: 1200px;
+    margin: 0 auto 4rem auto;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.title-information {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 1.5rem;
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.2;
+}
+
+.text-description2,
+.text-description3 {
+    font-size: 1.125rem;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-family: "Inter", sans-serif;
+}
+
+/* Wrapper del slider */
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden; /* Cambiar a hidden para no romper el layout */
+    padding: 2rem 0;
+}
+
+/* Track del slider - contenedor de las tarjetas */
+.slider-track-info {
+    display: flex;
+    gap: 2rem;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: grab;
+    user-select: none;
+    padding: 0 2rem; /* Padding para los extremos */
+    position: relative;
+    z-index: 15; /* Z-index alto para asegurar accesibilidad */
+}
+
+.slider-track-info.grabbing {
+    cursor: grabbing;
+    transition: none;
+}
+
+.slider-track-info.grabbing .info-card {
+    pointer-events: none; /* Desactivar hover mientras se arrastra */
+}
+
+/* Tarjetas individuales */
+.info-card {
+    flex: 0 0 calc(100% - 4rem); /* Móvil: 1 tarjeta */
+    min-width: calc(100% - 4rem);
+    height: 600px; /* Altura fija más grande */
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    cursor: pointer;
+    isolation: isolate; /* Crear contexto de apilamiento */
+    z-index: 20; /* Z-index para las tarjetas */
+}
+
+.info-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    z-index: 25; /* Aumentar al hacer hover */
+}
+
+/* Imagen de la tarjeta - ocupa toda la tarjeta */
+.info-card-image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Imagen en la capa más baja */
+}
+
+.info-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.info-card:hover .info-card-image img {
+    transform: scale(1.1);
+}
+
+/* Overlay oscuro que aparece al hover */
+.info-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        rgba(0, 0, 0, 0) 0%, 
+        rgba(0, 0, 0, 0.4) 40%,
+        rgba(0, 0, 0, 0.9) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1; /* Encima de la imagen pero debajo del contenido */
+    pointer-events: none; /* No bloquea la interacción */
+}
+
+.info-card:hover::after {
+    opacity: 1;
+}
+
+/* Contenido de la tarjeta - completamente oculto por defecto */
+.info-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3rem 2.5rem;
+    transform: translateY(100%); /* Completamente oculto fuera de la tarjeta */
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    z-index: 2; /* Encima del overlay */
+    color: white;
+    pointer-events: none; /* No bloquea el arrastre cuando está oculto */
+}
+
+.info-card:hover .info-card-content {
+    transform: translateY(0); /* Se desliza hacia arriba */
+    opacity: 1; /* Se hace visible */
+    pointer-events: auto; /* Permite interacción cuando está visible */
+}
+
+.info-card-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+    font-family: "Montserrat", sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.info-card-description {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-family: "Inter", sans-serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.info-card-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.feature-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.feature-tag i {
+    font-size: 1rem;
+}
+
+/* Botón de la tarjeta */
+.info-card-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #0066cc 0%, #004c99 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+    pointer-events: auto; /* Permitir clicks en el botón */
+}
+
+.info-card-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 102, 204, 0.4);
+}
+
+.info-card-button i {
+    transition: transform 0.3s ease;
+}
+
+.info-card-button:hover i {
+    transform: translateX(4px);
+}
+
+/* Botones de navegación */
+.slider-nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.slider-nav-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid #e9ecef;
+    color: #333;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.slider-nav-btn:hover {
+    background: #0066cc;
+    color: white;
+    border-color: #0066cc;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
+}
+
+.slider-nav-btn:active {
+    transform: scale(0.95);
+}
+
+.slider-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.slider-nav-btn:disabled:hover {
+    background: white;
+    color: #333;
+    border-color: #e9ecef;
+    transform: scale(1);
+}
+
+/* Indicadores de posición */
+.slider-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.indicator-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d1d5db;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator-dot.active {
+    background: #0066cc;
+    width: 32px;
+    border-radius: 6px;
+}
+
+.indicator-dot:hover {
+    background: #9ca3af;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .info-card {
+        flex: 0 0 calc(50% - 1rem); /* Tablet: 2 tarjetas */
+        min-width: calc(50% - 1rem);
+        height: 650px; /* Más alto en tablet */
+    }
+}
+
+@media (min-width: 1200px) {
+    .info-card {
+        flex: 0 0 calc(50% - 1rem); /* Desktop: 2 tarjetas grandes */
+        min-width: calc(50% - 1rem);
+        height: 700px; /* Más alto en desktop */
+    }
+}
+
+@media (min-width: 1600px) {
+    .info-card {
+        flex: 0 0 calc(33.333% - 1.5rem); /* Pantallas muy grandes: 3 tarjetas */
+        min-width: calc(33.333% - 1.5rem);
+        height: 750px;
+    }
+}
+
+@media (max-width: 768px) {
+    .title-information {
+        font-size: 2rem;
+    }
+    
+    .info-card {
+        height: 500px; /* Altura para móvil */
+    }
+    
+    .info-card-content {
+        padding: 2rem 1.5rem;
+    }
+    
+    .info-card-title {
+        font-size: 1.75rem;
+    }
+    
+    .slider-nav-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+    
+    .slider-track-info {
+        padding: 0 1rem; /* Menos padding en móvil */
+    }
+}
+
+/* Animaciones */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.info-card {
+    animation: slideIn 0.6s ease-out forwards;
+}
+
+.info-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.info-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.info-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
